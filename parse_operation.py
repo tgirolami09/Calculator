@@ -7,7 +7,11 @@ def transform_number(operation:"list[str]",output:list,negative=False):
         to_transform.append(operation[padding])
         padding+=1
 
-    output.append(float("".join(to_transform)))
+    if to_transform != ["-"]:
+        output.append(float("".join(to_transform)))
+    else:
+        output.append(0)
+        output.append("-")
     return (padding-1 if negative == False else padding)
     
 
@@ -25,4 +29,5 @@ def parse_operation(operation:"list[str]"):
             skip = transform_number(operation[index:],output)
         else:
             output.append(char)
+
     return output
